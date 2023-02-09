@@ -22,12 +22,17 @@ submitB.addEventListener("click", (e) => {
         renderMessage(textI.value, "myMessage", messageF);
         renderMessage("Loading...", "otherMessage", messageF);
 
+        let headers = new Headers();
+        headers.append("Content-Type", "application/json;charset=utf-8");
+        headers.append(
+            "Access-Control-Allow-Origin",
+            "https://temirlan-emls.github.io/AI-Chat-VanilaJS/"
+        );
+
         fetch("https://chat-gpt-example.vercel.app/makeRequest", {
             method: "POST",
-
-            headers: {
-                "Content-Type": "application/json;charset=utf-8",
-            },
+            crossorigin: true,
+            headers: headers,
 
             body: JSON.stringify({
                 question: textI.value,
